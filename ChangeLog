@@ -1,0 +1,80 @@
+2011-06-21  Douglas Bates <bates@stat.wisc.edu>
+
+	* DESCRIPTION: Minor fix in punctuation.
+	* R/fastLm.R, inst/unitTests/runit.fastLm.R, man/fastLm.Rd,
+	  src/fastLm.cpp, src/fastLm.h: Refactoring of the fastLm code to allow
+	  algorithms to be added easily. Adjust docs and R code accordingly.
+
+2011-06-17  Douglas Bates <bates@stat.wisc.edu>
+
+	* inst/include/RcppEigenForward.h, inst/include/RcppEigenWrap.h: Add
+	  wrap instantiations for ArrayXd, ArrayXXd classes in Eigen
+
+2011-06-15  Douglas Bates <bates@stat.wisc.edu>
+
+	* DESCRIPTION, R/RcppEigen.package.skeleton.R, R/SHLIB.R, R/fastLm.R,
+	  R/inline.R, R/unit.test.R, inst/doc/RcppEigen-unitTests.Rnw,
+	  inst/include/RcppEigen.h, inst/include/RcppEigenConfig.h,
+	  inst/include/RcppEigenForward.h, inst/include/RcppEigenWrap.h,
+	  inst/unitTests/runit.fastLm.R, man/fastLm.Rd, src/RcppEigen.cpp,
+	  src/fastLm.cpp: Change references to Armadillo into Eigen; author
+	  order in copyright statements.
+
+2011-06-15  Dirk Eddelbuettel  <edd@debian.org>
+
+	* tests/doRUnit.R: oops: s/Armadillo/Eigen/
+
+2011-06-15  Douglas Bates <bates@stat.wisc.edu>
+
+	* src/fastLm.cpp: Initial (not very good) implementation of "fastLmSVD",
+	  which isn't really that fast.
+	* man/fastLm.Rd: Minor clarification.
+
+2011-06-15  Douglas Bates <bates@stat.wisc.edu>
+
+	* cleanup, inst/doc/*: Documentation based on unit tests.
+	* R/SHLIB.R, R/inline.R, R/unit.test.R: Add support for inline package
+	* inst/include/RcppEigen.h: Add support for sparse Cholesky and LU
+	* inst/include/unsupported, inst/include/unsupported/*: Add
+	  support for sparse Cholesky and LU
+	* man/RcppEigen-package.Rd: Add reference to web page
+	* NAMESPACE, R/RcppEigen.package.skeleton.R, inst/skeleton/*,
+	  man/RcppEigen.package.skeleton.Rd: Add RcppEigen.package.skeleton and
+	  support files.
+	* DESCRIPTION: Remove Conrad's text about Armadillo, as suggested by
+	  Dirk
+
+2011-06-15  Dirk Eddelbuettel  <edd@debian.org>
+
+	* inst/unitTests/runit.fastLm.R: better way to load trees dataset
+	* man/fastLm.Rd: better way to load trees dataset
+	* inst/unitTests/runit.fastLm.R, man/fastLm.Rd: added unit tests for
+	  fastLm{Bench,Chol1,Chol2}
+	* ChangeLog, inst/unitTests, inst/unitTests/runTests.R,
+	  inst/unitTests/runit.fastLm.R, tests, tests/doRUnit.R: added initial
+	  unit tests
+
+2011-06-14  Dirk Eddelbuettel  <edd@debian.org>
+
+	* inst/unitTests/*: Added initial unit tests
+	* tests/doRUnit.R: Added hook to run RUnit tests
+
+2011-06-14  Douglas Bates <bates@stat.wisc.edu>
+
+	* src/fastLm.cpp: Cosmetic fixes.
+	* DESCRIPTION: New version.
+	* man/fastLm.Rd: Change order of fastLmPure arguments in the example.
+	  Dirk said I would miss one of these. :-)
+	* R/fastLm.R, man/fastLm.Rd, src/fastLm.cpp: Change order of fastLmPure
+	  arguments and the various fastLm* C++ functions. Add fastLmChol1 and
+	  fastLmChol2.
+
+2011-06-13  Douglas Bates <bates@stat.wisc.edu>
+
+	* ChangeLog: Add ChangeLog
+	* src/fastLm.cpp: Handle the rank-deficient case.
+	* inst/include/Eigen/src/LU/arch/Inverse_SSE.h: Use an _m128d type
+	  instead of long long int for the mask.
+	* R/fastLm.R: Associate names with coefficients. Clean up fastLm.
+	  Forward the object through summary.
+	* inst/include/Eigen/src/Core/util/Meta.h: Suppress use of long long
