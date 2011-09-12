@@ -1,5 +1,204 @@
+2011-09-12  Douglas Bates <bates@stat.wisc.edu>
+
+	* inst/include/unsupported/Eigen/src/SparseExtra/CholmodSupport.h:
+	  Remove the solvetype specification for the solve method (but type is
+	  retained for solveInPlace).
+
+2011-09-11  Douglas Bates <bates@stat.wisc.edu>
+
+	* inst/include/RcppEigenForward.h: Remove forward declaration of
+	  non-existent templated function.
+
+2011-09-02  Douglas Bates <bates@stat.wisc.edu>
+
+	* DESCRIPTION, inst/include/Eigen/src/Core/util/Meta.h: New release.
+	  ifdef the use of "long long" using RCPP_HAS_LONG_LONG_TYPES (thanks,
+	  Dirk)
+
+2011-08-31  Douglas Bates <bates@stat.wisc.edu>
+
+	* inst/include/unsupported/Eigen/src/SparseExtra/CholmodSupport.h:
+	  Delete my addition of a CholmodAutoLLt mode, which is not needed (I
+	  misunderstood something previously).
+
+2011-08-28  Douglas Bates <bates@stat.wisc.edu>
+
+	* many files in inst/include/Eigen and inst/include/unsupported:
+	  Upgrade to Eigen release 3.0.2
+
+2011-08-12  Douglas Bates <bates@stat.wisc.edu>
+
+	* inst/include/unsupported/Eigen/src/SparseExtra/CholmodSupport.h:
+	  By-passing the const reference
+
+2011-08-11  Douglas Bates <bates@stat.wisc.edu>
+
+	* inst/include/unsupported/Eigen/src/SparseExtra/CholmodSupport.h: Add a
+	  solveInPlace method to try to avoid memory problems.
+
+2011-08-10  Douglas Bates <bates@stat.wisc.edu>
+
+	* inst/include/unsupported/Eigen/src/SparseExtra/CholmodSupport.h:
+	  Attempted fix of problem of freeing Map'ed memory in the Cholmod
+	  solve.
+
+2011-07-31  Douglas Bates <bates@stat.wisc.edu>
+
+	* inst/include/unsupported/Eigen/src/SparseExtra/CholmodSupport.h:
+	  Trying to fix the memory problems from the CholmodDecomposition solve
+	  methods - apparently unsuccessfully.
+
+2011-07-29  Douglas Bates <bates@stat.wisc.edu>
+
+	* inst/include/unsupported/Eigen/src/SparseExtra/CholmodSupport.h: Add
+	  LLtAuto method (which doesn't seem to work), more extractors and a
+	  factorize_p method for a const_CHM_SP argument.
+	* inst/include/RcppEigenCholmod.h: Add a declaration of log determinant
+	  squared function.
+	* inst/include/unsupported/Eigen/src/SparseExtra/CholmodSupport.h,
+	  inst/unitTests/runit.sparse.R: Allow rectangular matrix in
+	  CholmodDecomposition's factorize method. Test rectangular version of
+	  KNex example.
+
+2011-07-28  Douglas Bates <bates@stat.wisc.edu>
+
+	* inst/include/unsupported/Eigen/src/SparseExtra/CholmodSupport.h: Added
+	  a solveType member - there will be better ways of doing this
+	* inst/include/RcppEigenForward.h: Include the stubs unconditionally
+	* inst/include/RcppEigenStubs.cpp:
+	* inst/include/RcppEigenStubs.h: Inlined the function definitions so it
+	  is a header file now
+	* inst/include/unsupported/Eigen/src/SparseExtra/CholmodSupport.h:
+	  Extended CholmodDecomposition analyzePattern and factorize to support
+	  rectangular matrices. Added factorize_p method, primarily for the
+	  factorization of A'A + I.
+	* DESCRIPTION, NAMESPACE, R/SHLIB.R, R/inline.R,
+	  inst/include/RcppEigen.h, inst/include/RcppEigenConfig.h,
+	  inst/include/RcppEigenForward.h, inst/include/RcppEigenWrap.h,
+	  inst/include/unsupported/Eigen/SparseExtra,
+	  inst/include/unsupported/Eigen/src/SparseExtra/CholmodSupport.h,
+	  inst/skeleton/Makevars, inst/unitTests/runit.sparse.R: Add support for
+	  Cholmod functions linked through the Matrix package. Tests for same.
+	  Wrap of an Eigen::SparseMatrix now returns an S4 dgCMatrix object.
+	* inst/include/RcppEigenCholmod.h, inst/include/RcppEigenStubs.cpp:
+	  Create stubs and the Cholmod header. (To Do: make the stubs inline
+	  functions in a header file.)
+
+2011-07-27  Douglas Bates <bates@stat.wisc.edu>
+
+	* inst/unitTests/runit.sparse.R: Separate the tests for sparse matrices.
+2011-07-26  Douglas Bates <bates@stat.wisc.edu>
+
+	* inst/include/unsupported/Eigen/src/SparseExtra/SimplicialCholesky.h:
+	  Added matrixLDL method
+
+2011-07-18  Douglas Bates <bates@stat.wisc.edu>
+
+	* src/fastLm.cpp: clean up code, taking advantage of the more general
+	  wrap methods
+
+2011-07-15  Douglas Bates <bates@stat.wisc.edu>
+
+	* inst/include/RcppEigenForward.h, inst/include/RcppEigenWrap.h,
+	  inst/unitTests/runit.RcppEigen.R: added as methods for
+	  Eigen::SparseMatrix and Eigen::MappedSparseMatrix classes and tests of
+	  same
+
+2011-07-13  Douglas Bates <bates@stat.wisc.edu>
+
+	* DESCRIPTION, inst/include/RcppEigenWrap.h,
+	  inst/unitTests/runit.RcppEigen.R: Dispatch on wrap to vector according
+	  to T::ColsAtCompileTime; modify tests to avoid the .eval() methods;
+	  bump Rcpp version dependence
+
+2011-07-13  Romain Francois  <romain@r-enthusiasts.com>
+
+	* inst/include/RcppEigenWrap.h: dispatch sparse/dense and generalizes
+	  dealing with sparse objects
+	* inst/include/RcppEigenWrap.h: comment non generic implementations
+	* inst/include/RcppEigenForward.h, inst/include/RcppEigenWrap.h: comment
+	  non generic implementations
+	* inst/include/RcppEigenWrap.h: deal with dimensions in
+	  eigen_wrap_is_plain
+	* inst/include/RcppEigenForward.h, inst/include/RcppEigenWrap.h: first
+	  steps into dealing with Eigen expressions
+
+2011-07-10  Douglas Bates <bates@stat.wisc.edu>
+
+	* inst/include/PlainObjectBaseAddon.h: Added some begin and end methods
+	  to PlainObjectBase template through the extension mechanism. Should
+	  make these legitimate iterators to simplify some wrap methods (need a
+	  value_type member).
+	* inst/include/RcppEigenForward.h, inst/include/RcppEigenWrap.h,
+	  inst/unitTests/runit.RcppEigen.R: Added as methods for mapped vectors
+	  and mapped matrices (still some code duplication) and tests of same.
+
+2011-07-09  Dirk Eddelbuettel  <edd@debian.org>
+
+	* inst/unitTests/runit.RcppEigen.R: s/Armadillo/Eigen/ in a few places
+
+2011-07-09  Douglas Bates <bates@stat.wisc.edu>
+
+	* inst/unitTests/runit.RcppEigen.R: Added tests of wrap and as. Need to
+	  create an as method for mapped arrays.
+
+2011-07-08  Douglas Bates <bates@stat.wisc.edu>
+
+	* DESCRIPTION: Prepare for a new release.
+	* inst/include/RcppEigen.h, inst/include/RcppEigenForward.h,
+	  inst/include/RcppEigenWrap.h: Add wrap methods for mapped Eigen
+	  objects; Initial support for as<> with some Eigen classes.
+	* inst/include/unsupported/Eigen/src/SparseExtra/SimplicialCholesky.h:
+	  Commit interim version of the SimplicialLLT and SimplicialLDLT classes
+	  that will appear in Eigen 3.0.2
+
+2011-06-30  Douglas Bates <bates@stat.wisc.edu>
+
+	* src/fastLm.cpp: Code simplification suggested by Gael Guennebaud
+
+2011-06-29  Dirk Eddelbuettel  <edd@debian.org>
+
+	* DESCRIPTION: make Maintainers equal to Authors (but keep our joint
+	  email address)
+
+2011-06-29  Douglas Bates <bates@stat.wisc.edu>
+
+	* inst/include/RcppEigenWrap.h: Syntax errors corrected.
+
+2011-06-28  Douglas Bates <bates@stat.wisc.edu>
+
+	* inst/examples/lmBenchmark.R: Print the results from do_bench() so
+	  echo=TRUE is not needed when sourcing; add a suppressSVD argument to
+	  do_bench().
+
+2011-06-27  Douglas Bates <bates@stat.wisc.edu>
+
+	* inst/include/RcppEigenForward.h, inst/include/RcppEigenWrap.h: Add a
+	  wrap method (compiles but currently untested) for
+	  Eigen::SparseMatrix<T>
+	* src/fastLm.cpp: Include sample code for the Moore-Penrose inverse.
+	  There are better ways of doing this but I can't work out the syntax.
+
+2011-06-25  Douglas Bates <bates@stat.wisc.edu>
+
+	* inst/examples, inst/examples/lmBenchmark.R: Add lm benchmark example
+	* src/fastLm.cpp: tighten code a bit
+
+2011-06-23  Douglas Bates <bates@stat.wisc.edu>
+
+	* src/fastLm.cpp: Don't try to extract names that aren't there.
+	* man/fastLm.Rd: Add a simple example.
+	* src/fastLm.cpp, src/fastLm.h: Add the SymmEig lm method. Preliminary
+	  support for setting a tolerance for the rank calculation.
+	* src/RcppEigen.cpp: Use the correct macros for eigen_version.
+	* man/fastLm.Rd, tests/simple.R: Add examples and test cases for simple
+	  crossprod and tcrossprod functions
+	* inst/include/RcppEigenForward.h, inst/include/RcppEigenWrap.h: bypass
+	  the incomplete exporter functions to support as<>
+
 2011-06-21  Douglas Bates <bates@stat.wisc.edu>
 
+	* src/fastLm.cpp, src/fastLm.h: Add an SVD method for fastLm
 	* DESCRIPTION: Minor fix in punctuation.
 	* R/fastLm.R, inst/unitTests/runit.fastLm.R, man/fastLm.Rd,
 	  src/fastLm.cpp, src/fastLm.h: Refactoring of the fastLm code to allow

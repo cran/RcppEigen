@@ -59,10 +59,10 @@ ColPivQR::ColPivQR(const MMatrixXd &X, const MVectorXd &y) : lm(X, y) {
     PermutationType    Pmat = PQR.colsPermutation();
     m_perm                  = Pmat.indices();
     m_r                     = PQR.rank();
-    m_df                    = m_n - m_r;
     MatrixXd              R = PQR.matrixQR().topLeftCorner(m_p, m_p);
 
     if (m_r < (int)m_p) {		// The rank-deficient case
+	m_df                = m_n - m_r;
 	int           nsing = m_p - m_r;
 	MatrixXd     Atrunc = (X * Pmat).leftCols(m_r);
 	QRType           QR(Atrunc);
@@ -111,11 +111,25 @@ LDLT::LDLT(const MMatrixXd &X, const MVectorXd &y) : lm(X, y) {
     m_unsc      = Ch.solve(MatrixXd::Identity(m_p, m_p));
 }
 
+// SVD method
+MatrixXd pseudoInverse(const MatrixXd& X, double tolerance) {
+    SVDType  UDV = X.jacobiSvd(Eigen::ComputeThinU|Eigen::ComputeThinV);
+    VectorXd   D = UDV.singularValues();
+    double   tol = D[0] * tolerance;
+				// There are better ways of doing this
+    double  *Dpt = D.data();
+    for (int i = 0; i < D.size(); ++i)
+	Dpt[i] = Dpt[i] < tol ? 0. : 1/Dpt[i];
+// Eigen2 code
+//UDV.matrixV() * (D.cwise() > tol).select(D.cwise().inverse(), 0).
+//    asDiagonal() * UDV.matrixU().adjoint();
+    return UDV.matrixV() * D.asDiagonal() * UDV.matrixU().adjoint();
+}
+
 SVD::SVD(const MMatrixXd &X, const MVectorXd &y) : lm(X, y) {
     SVDType  UDV = X.jacobiSvd(Eigen::ComputeThinU|Eigen::ComputeThinV);
     VectorXd   D = UDV.singularValues();
-    m_r          = std::count_if(D.data(), D.data() + m_p,
-				 std::bind2nd(std::greater<double>(), threshold() * D[0]));
+    m_r          = (D.array() > threshold() * D[0]).count();
     m_coef       = UDV.solve(y);
     m_fitted     = X * m_coef;
     MatrixXd VDi = UDV.matrixV() * DiagType(UDV.singularValues().array().inverse().matrix());
@@ -160,36 +174,35 @@ static inline lm do_lm(const MMatrixXd &X, const MVectorXd &y, int type)
 
 extern "C" SEXP fastLm(SEXP Xs, SEXP ys, SEXP type) {
     try {
-	const NumericMatrix    X(Xs);
-	const NumericVector    y(ys);
-	Index    n = X.nrow(), p = X.ncol();
+	const MMatrixXd      X(as<MMatrixXd>(Xs));
+	const MVectorXd      y(as<MVectorXd>(ys));
+	Index                n = X.rows(), p = X.cols();
 	if ((Index)y.size() != n)
 	    throw std::invalid_argument("size mismatch");
-	const MVectorXd       yy(y.begin(), n);
-        const MMatrixXd       XX(X.begin(), n, p);
 
-	lm                   ans = do_lm(XX, yy, ::Rf_asInteger(type));
-	NumericVector       coef(ans.coef().data(), ans.coef().data() + p);
-				// install the names, if available
-	List            dimnames = X.attr("dimnames");
+	lm                 ans = do_lm(X, y, ::Rf_asInteger(type));
+				// Copy coefficients and install names, if available
+	NumericVector     coef = wrap(ans.coef());
+	List          dimnames = NumericMatrix(Xs).attr("dimnames");
 	if (dimnames.size() > 1) {
-	    RObject         colnames = dimnames[1];
+	    RObject   colnames = dimnames[1];
 	    if (!(colnames).isNULL())
 		coef.attr("names") = clone(CharacterVector(colnames));
 	}
 	    
-	VectorXd           resid = yy - ans.fitted();
-	double                s2 = resid.squaredNorm()/ans.df();
-	PermutationType     Pmat = PermutationType(p);
-	Pmat.indices()           = ans.perm();
-	VectorXd              dd = Pmat * ans.unsc().diagonal();
-	ArrayXd               se = (dd.array() * s2).sqrt();
+	VectorXd         resid = y - ans.fitted();
+	double              s2 = resid.squaredNorm()/ans.df();
+				// Create the standard errors
+	PermutationType   Pmat = PermutationType(p);
+	Pmat.indices()         = ans.perm();
+	VectorXd            dd = Pmat * ans.unsc().diagonal();
+	ArrayXd             se = (dd.array() * s2).sqrt();
 
 	return List::create(_["coefficients"]  = coef,
 			    _["se"]            = se,
 			    _["rank"]          = ans.rank(),
 			    _["df.residual"]   = ans.df(),
-			    _["perm"]          = IntegerVector(ans.perm().data(), ans.perm().data() + p),
+			    _["perm"]          = ans.perm(),
 			    _["residuals"]     = resid,
 			    _["s2"]            = s2,
 			    _["fitted.values"] = ans.fitted(),
