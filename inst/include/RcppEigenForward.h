@@ -25,26 +25,28 @@
 #include <RcppCommon.h>
 #include <Rconfig.h>
 #include <RcppEigenConfig.h>
+#include <RcppEigenCholmod.h>
+#include <RcppEigenStubs.h>
+#define EIGEN_PLAINOBJECTBASE_PLUGIN "PlainObjectBaseAddon.h"
 #include <Eigen/Dense>
+#include <unsupported/Eigen/SparseExtra> // also includes Eigen/Sparse
+
 /* forward declarations */
 namespace Rcpp {
     /* support for wrap */
-    template<typename T> SEXP wrap( const Eigen::Matrix<T, Eigen::Dynamic, Eigen::Dynamic>& ) ;
-    template<typename T> SEXP wrap( const Eigen::Matrix<T, Eigen::Dynamic, 1>& ) ;
-    template<typename T> SEXP wrap( const Eigen::Matrix<T, 1, Eigen::Dynamic>& ) ;
-    template<typename T> SEXP wrap( const Eigen::Array<T, Eigen::Dynamic, Eigen::Dynamic>& ) ;
-    template<typename T> SEXP wrap( const Eigen::Array<T, Eigen::Dynamic, 1>& ) ;
-    
-#if 0
+   
     namespace traits {
 
 	/* support for as */
-	template<typename T> class Exporter< Eigen::Matrix<T, Eigen::Dynamic, Eigen::Dynamic> > ;
-	template<typename T> class Exporter< Eigen::Matrix<T, Eigen::Dynamic, 1> > ;
-	template<typename T> class Exporter< Eigen::Matrix<T, 1, Eigen::Dynamic> > ;
+	template<typename T> class Exporter< Eigen::Map<Eigen::Matrix<T, Eigen::Dynamic, 1> > >;
+	template<typename T> class Exporter< Eigen::Map<Eigen::Matrix<T, Eigen::Dynamic, Eigen::Dynamic> > >;
+	template<typename T> class Exporter< Eigen::Matrix<T, Eigen::Dynamic, Eigen::Dynamic> >;
+	template<typename T> class Exporter< Eigen::Matrix<T, Eigen::Dynamic, 1> >;
+	template<typename T> class Exporter< Eigen::Matrix<T, 1, Eigen::Dynamic> >;
+	template<typename T> class Exporter< Eigen::MappedSparseMatrix<T> >;
+	template<typename T> class Exporter< Eigen::SparseMatrix<T> >;
 
     } // namespace traits 
-#endif
 
 }
 

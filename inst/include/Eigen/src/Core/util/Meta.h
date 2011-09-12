@@ -84,6 +84,7 @@ template<> struct is_arithmetic<unsigned long> { enum { value = true }; };
 template<> struct is_arithmetic<signed long long>   { enum { value = true }; };
 template<> struct is_arithmetic<unsigned long long> { enum { value = true }; };
 #endif
+
 template <typename T> struct add_const { typedef const T type; };
 template <typename T> struct add_const<T&> { typedef T& type; };
 
