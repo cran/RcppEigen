@@ -1,6 +1,6 @@
 // -*- mode: C++; c-indent-level: 4; c-basic-offset: 4; tab-width: 8 -*-
 //
-// RcppEigen.cpp: Rcpp/Armadillo glue
+// RcppEigen.cpp: Rcpp/Eigen glue
 //
 // Copyright (C)       2011 Douglas Bates, Dirk Eddelbuettel and Romain Francois
 //
@@ -21,23 +21,32 @@
 
 #include <RcppEigen.h>
 
-using namespace Rcpp;
-extern "C" SEXP eigen_version(SEXP single_){
-
-    bool single = as<bool>( single_) ;
-    if( single ){
-	return wrap( 10000 * EIGEN_WORLD_VERSION +
-		     100 * EIGEN_MAJOR_VERSION + 
-		     EIGEN_MINOR_VERSION ) ;
+extern "C" {
+    SEXP eigen_version(SEXP single_){
+	using Rcpp::_;
+	using Rcpp::IntegerVector;
+	
+	BEGIN_RCPP;
+	bool single = Rcpp::as<bool>(single_) ;
+	if( single ){
+	    return Rcpp::wrap( 10000 * EIGEN_WORLD_VERSION +
+			       100 * EIGEN_MAJOR_VERSION + 
+			       EIGEN_MINOR_VERSION ) ;
+	}
+	
+	return IntegerVector::create(_["major"] = EIGEN_WORLD_VERSION,
+				     _["minor"] = EIGEN_MAJOR_VERSION,
+				     _["patch"] = EIGEN_MINOR_VERSION);
+	END_RCPP;
     }
 
-    IntegerVector version = 
-	IntegerVector::create(_["major"] = EIGEN_WORLD_VERSION,
-			      _["minor"] = EIGEN_MAJOR_VERSION,
-			      _["patch"] = EIGEN_MINOR_VERSION);
-
-   return version ;
-
+    SEXP Eigen_SSE() {
+	BEGIN_RCPP;
+	return Rcpp::wrap(Eigen::SimdInstructionSetsInUse());
+	END_RCPP;
+    }
 }
+
+
 
 
