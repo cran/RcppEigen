@@ -235,7 +235,7 @@ enum CholmodMode {
 	OtherDerived& other = _other.const_cast_derived();
 	eigen_assert(m_factorizationIsOk && 
 		     "The decomposition is not in a valid state for solving, you must first call either compute() or symbolic()/numeric()");
-	eigen_assert(m_cholmodFactor->n == other.rows());
+	eigen_assert((Index)(m_cholmodFactor->n) == other.rows());
 	    
 	// note: cd stands for Cholmod Dense
 	cholmod_dense b_cd = viewAsCholmod(other.const_cast_derived());
@@ -393,7 +393,7 @@ enum CholmodMode {
 	void _solve(const MatrixBase<Rhs> &b, MatrixBase<Dest> &dest) const
 	{
 	    eigen_assert(m_factorizationIsOk && "The decomposition is not in a valid state for solving, you must first call either compute() or symbolic()/numeric()");
-	    eigen_assert(m_cholmodFactor->n == b.rows());
+	    eigen_assert((Index)(m_cholmodFactor->n) == b.rows());
 	    
 	    // note: cd stands for Cholmod Dense
 	    cholmod_dense b_cd = viewAsCholmod(b.const_cast_derived());
@@ -415,7 +415,7 @@ enum CholmodMode {
 	void _solve(const SparseMatrix<RhsScalar,RhsOptions,RhsIndex> &b, SparseMatrix<DestScalar,DestOptions,DestIndex> &dest) const
 	{
 	    eigen_assert(m_factorizationIsOk && "The decomposition is not in a valid state for solving, you must first call either compute() or symbolic()/numeric()");
-	    eigen_assert(m_cholmodFactor->n == b.rows());
+	    eigen_assert((Index)(m_cholmodFactor->n) == b.rows());
 	    
 	    // note: cs stands for Cholmod Sparse
 	    cholmod_sparse b_cs = viewAsCholmod(b);
