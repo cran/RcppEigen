@@ -27,7 +27,6 @@
 #include <RcppEigenConfig.h>
 #include <RcppEigenCholmod.h>
 #include <RcppEigenStubs.h>
-#define EIGEN_PLAINOBJECTBASE_PLUGIN "PlainObjectBaseAddon.h"
 #include <Eigen/Dense>
 #include <unsupported/Eigen/SparseExtra> // also includes Eigen/Sparse
 
@@ -35,6 +34,9 @@
 namespace Rcpp {
     /* support for wrap */
    
+    template<>
+    SEXP wrap(const Eigen::CholmodDecomposition<Eigen::SparseMatrix<double> >& obj);
+
     namespace traits {
 
 	/* support for as */
