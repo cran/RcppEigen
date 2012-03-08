@@ -24,11 +24,20 @@
 
 #include <RcppCommon.h>
 #include <Rconfig.h>
-#include <RcppEigenConfig.h>
 #include <RcppEigenCholmod.h>
 #include <RcppEigenStubs.h>
 #include <Eigen/Dense>
+#include <Eigen/Sparse>
+#include <Eigen/CholmodSupport>
+#include <unsupported/Eigen/AutoDiff>
+#include <unsupported/Eigen/IterativeSolvers>
+#include <unsupported/Eigen/KroneckerProduct>
+#include <unsupported/Eigen/MatrixFunctions>
+#include <unsupported/Eigen/NonLinearOptimization>
+#include <unsupported/Eigen/NumericalDiff>
+#include <unsupported/Eigen/Polynomials>
 #include <unsupported/Eigen/SparseExtra> // also includes Eigen/Sparse
+#include <unsupported/Eigen/Splines>
 
 /* forward declarations */
 namespace Rcpp {
@@ -42,9 +51,14 @@ namespace Rcpp {
 	/* support for as */
 	template<typename T> class Exporter< Eigen::Map<Eigen::Matrix<T, Eigen::Dynamic, 1> > >;
 	template<typename T> class Exporter< Eigen::Map<Eigen::Matrix<T, Eigen::Dynamic, Eigen::Dynamic> > >;
+	template<typename T> class Exporter< Eigen::Map<Eigen::Array<T, Eigen::Dynamic, 1> > >;
+	template<typename T> class Exporter< Eigen::Map<Eigen::Array<T, Eigen::Dynamic, Eigen::Dynamic> > >;
 	template<typename T> class Exporter< Eigen::Matrix<T, Eigen::Dynamic, Eigen::Dynamic> >;
 	template<typename T> class Exporter< Eigen::Matrix<T, Eigen::Dynamic, 1> >;
 	template<typename T> class Exporter< Eigen::Matrix<T, 1, Eigen::Dynamic> >;
+	template<typename T> class Exporter< Eigen::Array<T, Eigen::Dynamic, Eigen::Dynamic> >;
+	template<typename T> class Exporter< Eigen::Array<T, Eigen::Dynamic, 1> >;
+	template<typename T> class Exporter< Eigen::Array<T, 1, Eigen::Dynamic> >;
 	template<typename T> class Exporter< Eigen::MappedSparseMatrix<T> >;
 	template<typename T> class Exporter< Eigen::SparseMatrix<T> >;
 
