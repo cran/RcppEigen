@@ -353,6 +353,7 @@ matrix in the \code{SEXP} \code{AA} is first mapped to an
 from its transpose and returned to \proglang{R}.
 
 \begin{figure}[htb]
+  \hrule \smallskip
   %\begin{quote}
     \noindent
     \ttfamily
@@ -365,6 +366,7 @@ from its transpose and returned to \proglang{R}.
     \hlstd{}\hlkwa{return\ }\hlstd{}\hlkwd{wrap}\hlstd{}\hlsym{(}\hlstd{At}\hlsym{);}\hlstd{}\hspace*{\fill}
     \normalfont
   %\end{quote}
+  \hrule
   \caption{\code{transCpp}: Transpose a matrix of integers.}
   \label{trans}
 \end{figure}
@@ -403,9 +405,11 @@ As mentioned in Section~\ref{sec:arrays}, the \code{`*'} operator is
 overloaded as matrix multiplication for the various matrix and vector
 classes in \pkg{Eigen}. The \proglang{C++} code in
 Figure~\ref{prod} produces a list containing both the product and
-cross-product of its two arguments.
+cross-product (in the sense of the \proglang{R} function call
+\code{crossproduct(A, B)} evaluating $\bm A^\prime\bm B$) of its two arguments
 
 \begin{figure}[htb]
+  \hrule \smallskip
   %\begin{quote}
   \noindent
   \ttfamily
@@ -418,6 +422,7 @@ cross-product of its two arguments.
   \normalfont
   \normalsize
   %\end{quote}
+  \hrule
   \caption{\code{prodCpp}: Product and cross-product of two matrices.}
   \label{prod}
 \end{figure}
@@ -473,6 +478,7 @@ of $\bm A\bm A^\prime$ to the current symmetric matrix.  The scalar
 multiple defaults to 1.  The code in Figure~\ref{crossprod} produces
 
 \begin{figure}[htb]
+  \hrule \smallskip
   %\begin{quote}
     \noindent
     \ttfamily
@@ -492,6 +498,7 @@ multiple defaults to 1.  The code in Figure~\ref{crossprod} produces
     \normalfont
     \normalsize
   %\end{quote}
+  \hrule
   \caption{\code{crossprodCpp}: Cross-product and transposed cross-product of a single matrix.}
   \label{crossprod}
 \end{figure}
@@ -516,6 +523,22 @@ using the elements in the lower triangle, then adding $\bm A\bm A^\prime$
 to it and converting back to a general matrix form (\textit{i.e.,} the strict lower
 triangle is copied into the strict upper triangle).
 
+In more detail:
+\begin{enumerate}
+\item \code{MatrixXi(n, n)} creates an $n\times n$ integer matrix with
+  arbitrary contents
+\item \code{.setZero()} zeros out the contents of the matrix
+\item \code{.selfAdjointView<Lower>()} causes what follows to treat
+  the matrix as a symmetric matrix in which only the lower triangle is
+  used, the strict upper triangle being inferred by symmetry
+\item \code{.rankUpdate(A)} forms the sum $\bm B+\bm A\bm A^\prime$
+  where $\bm B$ is the symmetric matrix of zeros created in the
+  previous steps.
+\end{enumerate}
+The assignment of this symmetric matrix to the (general)
+\code{MatrixXi} object \code{AAt} causes the result to be symmetrized
+during the assignment.
+
 For these products one could define the symmetric matrix from either
 the lower triangle or the upper triangle as the result will be
 symmetrized before it is returned.
@@ -526,6 +549,7 @@ in the calls to \code{cxxfunction}.  We also define a utility
 function, \code{AtA}, that returns the crossproduct matrix as shown in Figure~\ref{fig:incl}
 
 \begin{figure}[htb]
+  \hrule \smallskip
  %\begin{quote}
   \noindent
   \ttfamily
@@ -548,6 +572,7 @@ function, \code{AtA}, that returns the crossproduct matrix as shown in Figure~\r
   \normalfont
   \normalsize
 %\end{quote}
+  \hrule
   \caption{The contents of the character vector, \code{incl}, that will preface \proglang{C++} code segments that follow.}
   \label{fig:incl}
 \end{figure}
@@ -572,6 +597,7 @@ Because the Cholesky decomposition involves taking square roots, we
 pass a numeric matrix, $\bm A$, not an integer matrix.
 
 \begin{figure}[htb]
+  \hrule \smallskip
   %\begin{quote}
   \noindent
   \ttfamily
@@ -582,6 +608,7 @@ pass a numeric matrix, $\bm A$, not an integer matrix.
   \normalfont
   \normalsize
   %\end{quote}
+  \hrule
   \caption{\code{cholCpp}: Cholesky decomposition of a cross-product.}
   \label{chol}
 \end{figure}
@@ -629,6 +656,7 @@ diagonal elements of $\bm D$.  Several options are shown in
 Figure~\ref{cholDet}.
 
 \begin{figure}[htb]
+  \hrule \smallskip
   %\begin{quote}
     \noindent
     \ttfamily
@@ -642,6 +670,7 @@ Figure~\ref{cholDet}.
     \normalfont
     \normalsize
   %\end{quote}
+  \hrule
   \caption{\code{cholDetCpp}: Determinant of a cross-product using
     the ``LLt'' and ``LDLt'' forms of the Cholesky decomposition.}
   \label{cholDet}
@@ -688,6 +717,7 @@ y-\bm X\widehat{\bm\beta}\|^2$.
 \label{sec:LLtLeastSquares}
 
 \begin{figure}[tbh]
+  \hrule \smallskip
   %\begin{quote}
   \noindent
   \ttfamily
@@ -713,6 +743,7 @@ y-\bm X\widehat{\bm\beta}\|^2$.
   \normalfont
   \normalsize
   %\end{quote}
+  \hrule
   \caption{\code{lltLSCpp}: Least squares using the Cholesky decomposition.}
   \label{lltLS}
 \end{figure}
@@ -819,6 +850,7 @@ QR decomposition.
 % const VectorXd      se(QR.matrixQR().topRows(p).triangularView<Upper>()
 %                        .solve(MatrixXd::Identity(p,p)).rowwise().norm());
 \begin{figure}[htb]
+  \hrule \smallskip
   %\begin{quote}
     \noindent
     \ttfamily
@@ -833,6 +865,7 @@ QR decomposition.
     \mbox{}
     \normalfont
     \normalsize
+    \hrule
     \caption{\code{QRLSCpp}: Least squares using the unpivoted QR decomposition.}
     \label{QRLS}
   %\end{quote}
@@ -937,6 +970,7 @@ The pseudo-inverse, $\bm X^+$, of $\bm X$ is defined as
   \bm X^+=\bm V\bm D_1^+\bm U_1^\prime .
 \end{displaymath}
 \begin{figure}[htb]
+  \hrule \smallskip
   %\begin{quote}
   \noindent
   \ttfamily
@@ -950,6 +984,7 @@ The pseudo-inverse, $\bm X^+$, of $\bm X$ is defined as
   \normalfont
   \normalsize
   %\end{quote}
+  \hrule
   \caption{\code{DplusCpp}: Create the diagonal $\bm d^+$ of the pseudo-inverse, $\bm D_1^+$, from the array of singular values, $\bm d$.}
   \label{Dplus}
 \end{figure}
@@ -977,6 +1012,7 @@ values.
 With these definitions the code for least squares using the singular
 value decomposition can be written as in Figure~\ref{SVDLS}.
 \begin{figure}[htb]
+  \hrule \smallskip
   %\begin{quote}
     \noindent
     \ttfamily
@@ -991,6 +1027,7 @@ value decomposition can be written as in Figure~\ref{SVDLS}.
     \normalfont
     \normalsize
   %\end{quote}
+  \hrule
   \caption{\code{SVDLSCpp}: Least squares using the SVD.}
   \label{SVDLS}
 \end{figure}
@@ -1044,6 +1081,7 @@ of the singular values of $\bm X$.
 With these definitions one can adapt much of the code from the SVD
 method for the eigendecomposition, as shown in Figure~\ref{SymmEigLS}.
 \begin{figure}[htb]
+  \hrule \smallskip
   %\begin{quote}
     \noindent
     \ttfamily
@@ -1057,6 +1095,7 @@ method for the eigendecomposition, as shown in Figure~\ref{SymmEigLS}.
     \normalfont
     \normalsize
   %\end{quote}
+  \hrule
   \caption{\code{SymmEigLSCpp}: Least squares using the eigendecomposition.}
   \label{SymmEigLS}
 \end{figure}
@@ -1112,6 +1151,7 @@ employ the relationship
 \end{displaymath}
 The vector $\bm Q^\prime\bm y$ is called the ``effects'' vector in \proglang{R}.
 \begin{figure}[htb]
+  \hrule \smallskip
   %\begin{quote}
     \noindent
     \ttfamily
@@ -1145,6 +1185,7 @@ The vector $\bm Q^\prime\bm y$ is called the ``effects'' vector in \proglang{R}.
     \normalfont
     \normalsize
   %\end{quote}
+  \hrule
   \caption{\code{ColPivQRLSCpp}: Least squares using the pivoted QR decomposition.}
   \label{ColPivQRLS}
 \end{figure}
@@ -1395,6 +1436,7 @@ shape but incorrect contents is obtained.
 
 \begin{figure}[htb]
   %\begin{quote}
+  \hrule \smallskip
   \noindent
   \ttfamily
   \hlstd{}\hlkwb{const\ }\hlstd{MapMati}\hlstd{\ \ }\hlstd{}\hlkwd{A}\hlstd{}\hlopt{(}\hlstd{as}\hlopt{$<$}\hlstd{MapMati}\hlopt{$>$(}\hlstd{AA}\hlopt{));}\hspace*{\fill}\\
@@ -1403,6 +1445,7 @@ shape but incorrect contents is obtained.
   \normalfont
   \normalsize
   %\end{quote}
+  \hrule
   \caption{\code{badtransCpp}: Transpose producing incorrect results.}
   \label{badtrans}
 \end{figure}
@@ -1430,6 +1473,7 @@ class \code{dgCMatrix} (from the \pkg{Matrix} package by
 
 \begin{figure}[htb]
   %\begin{quote}
+  \hrule \smallskip
   \noindent
   \ttfamily
   \hlstd{}\hlkwa{using\ }\hlstd{Eigen}\hlopt{::}\hlstd{MappedSparseMatrix}\hlopt{;}\hspace*{\fill}\\
@@ -1443,6 +1487,7 @@ class \code{dgCMatrix} (from the \pkg{Matrix} package by
   \mbox{}
   \normalfont
   \normalsize
+  \hrule
   \caption{\code{sparseProdCpp}: Transpose and product with sparse matrices.}
   \label{sparseProd}
   %\end{quote}
@@ -1470,6 +1515,7 @@ Figure~\ref{fig:spLS}.
 
 \begin{figure}[htb]
   %\begin{quote}
+  \hrule \smallskip
     \noindent
     \ttfamily
     \hlstd{}\hlkwc{typedef\ }\hlstd{Eigen}\hlopt{::}\hlstd{MappedSparseMatrix}\hlopt{$<$}\hlstd{}\hlkwb{double}\hlstd{}\hlopt{$>$}\hlstd{\ \ }\hlopt{}\hlstd{MSpMat}\hlopt{;}\hspace*{\fill}\\
@@ -1491,6 +1537,7 @@ Figure~\ref{fig:spLS}.
     \normalfont
     \normalsize
   %\end{quote}
+  \hrule
   \caption{\code{sparseLSCpp}: Solving a sparse least squares problem.}
   \label{fig:spLS}
 \end{figure}
