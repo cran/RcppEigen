@@ -1,7 +1,5 @@
-
 library(inline)
 library(RcppEigen)
-
 
 incl <- '
 using   Eigen::LLT;
@@ -147,7 +145,7 @@ str(lmFit <- with(trees, lm.fit(cbind(1, log(Girth)), log(Volume))))
 for (nm in c("coefficients", "residuals", "fitted.values", "rank"))
     stopifnot(all.equal(lltFit[[nm]], unname(lmFit[[nm]])))
 stopifnot(all.equal(unname(vcov(lm(log(Volume) ~ log(Girth), trees))),
-                    lltVCFit$vcov))
+                    lltFit$vcov))
 
 ## section 4.3
 
@@ -219,18 +217,21 @@ stopifnot(all.equal(rr$At, t(KNex$mm)),
 sparseLSCpp <- '
 typedef Eigen::MappedSparseMatrix<double>  MSpMat;
 typedef Eigen::SparseMatrix<double>         SpMat;
-typedef Eigen::SimplicialLDLt<SpMat>       SpChol;
+typedef Eigen::SimplicialLDLT<SpMat>       SpChol;
 typedef Eigen::CholmodDecomposition<SpMat> CholMD;
 
 const SpMat      At(as<MSpMat>(AA).adjoint());
 const VectorXd  Aty(At * as<MapVecd>(yy));
 const SpChol     Ch(At * At.adjoint());
 if (Ch.info() != Eigen::Success) return R_NilValue;
-const CholMD      L(At);
+CholMD           L;
+L.compute(At);
 if (L.info() != Eigen::Success) return R_NilValue;
-return List::create(Named("L")        = wrap(L),
-                    Named("betahatS") = Ch.solve(Aty),
-                    Named("betahatC") = L.solve(Aty),
+const VectorXd betahat  = Ch.solve(Aty);
+const VectorXd betahatC = L.solve(Aty);
+return List::create(//Named("L")        = L,
+                    Named("betahat")  = betahat,
+                    Named("betahatC") = betahatC,
                     Named("perm")     = Ch.permutationP().indices());
 '
 
@@ -239,7 +240,7 @@ sparse2 <- cxxfunction(signature(AA = "dgCMatrix", yy = "numeric"),
 str(rr <-  sparse2(KNex$mm, KNex$y))
 res <- as.vector(solve(Ch <- Cholesky(crossprod(KNex$mm)),
                        crossprod(KNex$mm, KNex$y)))
-stopifnot(all.equal(rr$betahatS, res), all.equal(rr$betahatC, res))
+stopifnot(all.equal(rr$betahat, res))
                                         # factors are different sizes
-c(nnzL=length(rr$L@x), nnzCh=length(Ch@x))
+#c(nnzL=length(rr$L@x), nnzCh=length(Ch@x))
 all(rr$perm == Ch@perm) # fill-reducing permutations are different
