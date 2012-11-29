@@ -2,7 +2,7 @@
 //
 // RcppEigenWrap.h: Rcpp wrap methods for Eigen matrices, vectors and arrays
 //
-// Copyright (C)      2011 Douglas Bates, Dirk Eddelbuettel and Romain Francois
+// Copyright (C) 2011 - 2012   Douglas Bates, Dirk Eddelbuettel and Romain Francois
 //
 // This file is part of RcppEigen.
 //
@@ -154,87 +154,95 @@ namespace Rcpp{
 
 
     namespace traits {
-
         /* support for Rcpp::as */
-    
+        
+        template <typename T, int RTYPE>
+        class Eigen_Matrix_Exporter {
+            public:
+            Eigen_Matrix_Exporter(SEXP x) : vec(x), d_ncol(1), d_nrow(Rf_length(x)) {
+                if (TYPEOF(x) != RTYPE)
+                    throw std::invalid_argument("Wrong R type for mapped vector");
+                if (::Rf_isMatrix(x)) {
+                    int *dims = vec.dims() ;
+                    d_nrow = dims[0];
+                    d_ncol = dims[1];
+                }
+            }
+            T get() {return T(vec.begin(), d_nrow, d_ncol );}
+            private:
+                Rcpp::Vector<RTYPE> vec ;
+                int d_nrow, d_ncol ;
+        } ;
+       
+        
         template<typename T>
         class Exporter<Eigen::Map<Eigen::Matrix<T, Eigen::Dynamic, 1> > > {
+            typedef typename Eigen::Map<Eigen::Matrix<T, Eigen::Dynamic, 1> > OUT ;
+            const static int RTYPE = ::Rcpp::traits::r_sexptype_traits<T>::rtype ;
+            Rcpp::Vector<RTYPE> vec ;
+        
         public:
-            typedef typename Eigen::Map<Eigen::Matrix<T, Eigen::Dynamic, 1> >  MVType;
-            Exporter(SEXP x) : d_size(::Rf_length(x)) {
-                const int RTYPE = ::Rcpp::traits::r_sexptype_traits<T>::rtype ;
+            Exporter(SEXP x) : vec(x) {
                 if (TYPEOF(x) != RTYPE)
                     throw std::invalid_argument("Wrong R type for mapped vector");
-                typedef typename ::Rcpp::traits::storage_type<RTYPE>::type STORAGE;
-                d_start         = ::Rcpp::internal::r_vector_start<RTYPE,STORAGE>(x);
             }
-            MVType get() {return MVType(d_start, d_size);}
-        protected:
-            const int d_size;
-            T*        d_start;
-        };
-
+            OUT get() {return OUT(vec.begin(), vec.size());}
+        } ;
+        
         template<typename T>
-        class Exporter<Eigen::Map<Eigen::Array<T, Eigen::Dynamic, 1> > > {
+        class Exporter< Eigen::Map<Eigen::Array<T, Eigen::Dynamic, 1> > > {
+            typedef typename Eigen::Map<Eigen::Array<T, Eigen::Dynamic, 1> > OUT ;
+            const static int RTYPE = ::Rcpp::traits::r_sexptype_traits<T>::rtype ;
+            Rcpp::Vector<RTYPE> vec ;
+        
         public:
-            typedef typename Eigen::Map<Eigen::Array<T, Eigen::Dynamic, 1> >  MAType;
-            Exporter(SEXP x) : d_size(::Rf_length(x)) {
-                const int RTYPE = ::Rcpp::traits::r_sexptype_traits<T>::rtype ;
+            Exporter(SEXP x) : vec(x) {
                 if (TYPEOF(x) != RTYPE)
                     throw std::invalid_argument("Wrong R type for mapped vector");
-                typedef typename ::Rcpp::traits::storage_type<RTYPE>::type STORAGE;
-                d_start         = ::Rcpp::internal::r_vector_start<RTYPE,STORAGE>(x);
             }
-            MAType get() {return MAType(d_start, d_size);}
-        protected:
-            const int d_size;
-            T*        d_start;
-        };
-
+            OUT get() {return OUT(vec.begin(), vec.size());}
+        } ;
+        
         template<typename T>
         class Exporter<Eigen::Map<Eigen::Matrix<T, Eigen::Dynamic, Eigen::Dynamic> > > {
-        public:
-            typedef typename Eigen::Map<Eigen::Matrix<T, Eigen::Dynamic, Eigen::Dynamic> >  MMType;
-            Exporter(SEXP x) : d_nrow(::Rf_length(x)), d_ncol(1) {
-                const int RTYPE = ::Rcpp::traits::r_sexptype_traits<T>::rtype ;
+            typedef typename Eigen::Map<Eigen::Matrix<T, Eigen::Dynamic, Eigen::Dynamic> > OUT ;
+            const static int RTYPE = ::Rcpp::traits::r_sexptype_traits<T>::rtype ;
+            Rcpp::Vector<RTYPE> vec ;
+            int d_ncol, d_nrow ;
+            
+            public:
+            Exporter(SEXP x) : vec(x), d_ncol(1), d_nrow(Rf_length(x)) {
                 if (TYPEOF(x) != RTYPE)
                     throw std::invalid_argument("Wrong R type for mapped vector");
-                typedef typename ::Rcpp::traits::storage_type<RTYPE>::type STORAGE;
-                d_start         = ::Rcpp::internal::r_vector_start<RTYPE,STORAGE>(x);
                 if (::Rf_isMatrix(x)) {
-                    int *dims = INTEGER(::Rf_getAttrib(x, R_DimSymbol));
+                    int *dims = INTEGER( ::Rf_getAttrib( x, R_DimSymbol ) ) ;
                     d_nrow = dims[0];
                     d_ncol = dims[1];
                 }
             }
-            MMType get() {return MMType(d_start, d_nrow, d_ncol);}
-        protected:
-            int   d_nrow, d_ncol;
-            T*    d_start;
-        };
-
+            OUT get() {return OUT(vec.begin(), d_nrow, d_ncol );}
+        } ;  
+        
         template<typename T>
         class Exporter<Eigen::Map<Eigen::Array<T, Eigen::Dynamic, Eigen::Dynamic> > > {
-        public:
-            typedef typename Eigen::Map<Eigen::Array<T, Eigen::Dynamic, Eigen::Dynamic> >  MAType;
-            Exporter(SEXP x) : d_nrow(::Rf_length(x)), d_ncol(1) {
-                const int RTYPE = ::Rcpp::traits::r_sexptype_traits<T>::rtype ;
+            typedef typename Eigen::Map<Eigen::Array<T, Eigen::Dynamic, Eigen::Dynamic> > OUT ;
+            const static int RTYPE = ::Rcpp::traits::r_sexptype_traits<T>::rtype ;
+            Rcpp::Vector<RTYPE> vec ;
+            int d_ncol, d_nrow ;
+            
+            public:
+            Exporter(SEXP x) : vec(x), d_ncol(1), d_nrow(Rf_length(x)) {
                 if (TYPEOF(x) != RTYPE)
                     throw std::invalid_argument("Wrong R type for mapped vector");
-                typedef typename ::Rcpp::traits::storage_type<RTYPE>::type STORAGE;
-                d_start         = ::Rcpp::internal::r_vector_start<RTYPE,STORAGE>(x);
                 if (::Rf_isMatrix(x)) {
-                    int *dims = INTEGER(::Rf_getAttrib(x, R_DimSymbol));
+                    int *dims = INTEGER( ::Rf_getAttrib( x, R_DimSymbol ) ) ;
                     d_nrow = dims[0];
                     d_ncol = dims[1];
                 }
             }
-            MAType get() {return MAType(d_start, d_nrow, d_ncol);}
-        protected:
-            int   d_nrow, d_ncol;
-            T*    d_start;
-        };
-
+            OUT get() {return OUT(vec.begin(), d_nrow, d_ncol );}
+        } ;  
+        
         template <typename T> 
         class Exporter<Eigen::Matrix<T, Eigen::Dynamic, 1> >
             : public IndexingExporter<Eigen::Matrix<T, Eigen::Dynamic, 1>, T> {
@@ -275,85 +283,68 @@ namespace Rcpp{
         template<typename T>
         class Exporter<Eigen::MappedSparseMatrix<T> > {
         public:
-            Exporter(SEXP x)
-                : d_x(x), d_dims(d_x.slot("Dim")), d_i(d_x.slot("i")), d_p(d_x.slot("p")) {
+            const static int RTYPE = ::Rcpp::traits::r_sexptype_traits<T>::rtype ;
+            Exporter(SEXP x) : d_x(x), d_dims(d_x.slot("Dim")), d_i(d_x.slot("i")), d_p(d_x.slot("p")), xx( d_x.slot("x") ) {
                 if (!d_x.is("CsparseMatrix")) 
                     throw std::invalid_argument("Need S4 class CsparseMatrix for an mapped sparse matrix");
-                const int RTYPE = ::Rcpp::traits::r_sexptype_traits<T>::rtype ;
-                SEXP xx = d_x.slot("x");
-                if (TYPEOF(xx) != RTYPE)
-                    throw std::invalid_argument("Wrong R type for mapped sparse matrix");
-                typedef typename ::Rcpp::traits::storage_type<RTYPE>::type STORAGE;
-                d_start         = ::Rcpp::internal::r_vector_start<RTYPE,STORAGE>(xx);
             }
             Eigen::MappedSparseMatrix<T> get() {
                 return Eigen::MappedSparseMatrix<T>(d_dims[0], d_dims[1], d_p[d_dims[1]],
-                                                    d_p.begin(), d_i.begin(), d_start);
+                                                    d_p.begin(), d_i.begin(), xx.begin() );
             }
         protected:
             S4            d_x;
-            T*            d_start;
             IntegerVector d_dims, d_i, d_p;
+            Vector<RTYPE> xx ;
         };
 
         template<typename T>
         class Exporter<Eigen::SparseMatrix<T> > {
         public:
-            Exporter(SEXP x)
-                : d_x(x), d_dims(d_x.slot("Dim")), d_i(d_x.slot("i")), d_p(d_x.slot("p")) {
+            const static int RTYPE = ::Rcpp::traits::r_sexptype_traits<T>::rtype ;
+            Exporter(SEXP x) : d_x(x), d_dims(d_x.slot("Dim")), d_i(d_x.slot("i")), d_p(d_x.slot("p")), xx(d_x.slot("x")) {
                 if (!d_x.is("CsparseMatrix"))
                     throw std::invalid_argument("Need S4 class CsparseMatrix for an mapped sparse matrix");
-                const int RTYPE = ::Rcpp::traits::r_sexptype_traits<T>::rtype ;
-                SEXP xx = d_x.slot("x");
-                if (TYPEOF(xx) != RTYPE) // should coerce instead - see Rcpp/inst/include/Rcpp/internal/export.h
-                    throw std::invalid_argument("Wrong R type for sparse matrix");
-                typedef typename ::Rcpp::traits::storage_type<RTYPE>::type STORAGE;
-                d_start         = ::Rcpp::internal::r_vector_start<RTYPE,STORAGE>(xx);
             }
             Eigen::SparseMatrix<T> get() {
                 Eigen::SparseMatrix<T>  ans(d_dims[0], d_dims[1]);
                 ans.reserve(d_p[d_dims[1]]);
                 for(int j = 0; j < d_dims[1]; ++j) {
                     ans.startVec(j);
-                    for (int k = d_p[j]; k < d_p[j + 1]; ++k) ans.insertBack(d_i[k], j) = d_start[k];
+                    for (int k = d_p[j]; k < d_p[j + 1]; ++k) ans.insertBack(d_i[k], j) = xx[k];
                 }
                 ans.finalize();  
                 return ans;
             }
         protected:
             S4            d_x;
-            T*            d_start;
             IntegerVector d_dims, d_i, d_p;
+            Vector<RTYPE> xx ;
         };
         
         template<typename T>
         class Exporter<Eigen::SparseMatrix<T, Eigen::RowMajor> > {
         public:
-            Exporter(SEXP x)
-                : d_x(x), d_dims(d_x.slot("Dim")), d_j(d_x.slot("j")), d_p(d_x.slot("p")) {
+            const static int RTYPE = ::Rcpp::traits::r_sexptype_traits<T>::rtype ;
+            
+            Exporter(SEXP x) : d_x(x), d_dims(d_x.slot("Dim")), d_j(d_x.slot("j")), d_p(d_x.slot("p")), xx(d_x.slot("x")) {
                 if (!d_x.is("dgRMatrix"))
                     throw std::invalid_argument("Need S4 class dgRMatrix for a sparse matrix");
-                const int RTYPE = ::Rcpp::traits::r_sexptype_traits<T>::rtype ;
-                SEXP xx = d_x.slot("x");
-                if (TYPEOF(xx) != RTYPE) // should coerce instead - see Rcpp/inst/include/Rcpp/internal/export.h
-                    throw std::invalid_argument("Wrong R type for sparse matrix");
-                typedef typename ::Rcpp::traits::storage_type<RTYPE>::type STORAGE;
-                d_start         = ::Rcpp::internal::r_vector_start<RTYPE,STORAGE>(xx);
             }
             Eigen::SparseMatrix<T, Eigen::RowMajor> get() {
                 Eigen::SparseMatrix<T, Eigen::RowMajor>  ans(d_dims[0], d_dims[1]);
                 ans.reserve(d_p[d_dims[0]]);
                 for(int i = 0; i < d_dims[0]; ++i) {
                     ans.startVec(i);
-                    for (int k = d_p[i]; k < d_p[i + 1]; ++k) ans.insertBack(i, d_j[k]) = d_start[k];
+                    for (int k = d_p[i]; k < d_p[i + 1]; ++k) ans.insertBack(i, d_j[k]) = xx[k];
                 }
                 ans.finalize();  
                 return ans;
             }
         protected:
             S4            d_x;
-            T*            d_start;
             IntegerVector d_dims, d_j, d_p;
+            Vector<RTYPE> xx ;
         };
 
     } // namespace traits
