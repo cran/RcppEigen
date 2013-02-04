@@ -1,8 +1,8 @@
-9e5957e2787b7c4de2e6e5462106e4f0 *ChangeLog
-81de19f3ce8ccdb2a5048b605f6038b4 *DESCRIPTION
+03314ddc52ceb9a4f34014ed111af8ff *ChangeLog
+1e3e3fe61ea2eb7043a977a9ab5f406b *DESCRIPTION
 a675cd3ac985f707b598577d0b66908f *NAMESPACE
-57d8a91dac4486fa3c7962ca7cc6f152 *NEWS
-95f74ecdf787af0bf823f7b17e689d69 *NEWS.org
+0c87a74651dc8c06ebe4535242906ef5 *NEWS
+0ea683a037e5e52840472b4cc8b76d70 *NEWS.org
 5ac28fa90d2825d636b77d9e0f36f842 *R/RcppEigen.package.skeleton.R
 f4ee1fef0dc06ba9f9c10fa27d9c3b57 *R/SHLIB.R
 5c87c7f0b3b751ed737c102ad990caeb *R/fastLm.R
@@ -10,8 +10,9 @@ f4ee1fef0dc06ba9f9c10fa27d9c3b57 *R/SHLIB.R
 9fae5556be6bdf2bc556809f1a7a25ee *R/inline.R
 c24fd11beb810e5091627f2a3189d97d *R/unit.test.R
 122124e5c83aa22c1a1edd530dfe89d5 *cleanup
+1e27f3b524c112856dd481a2168ee12e *inst/CITATION
 36c527c24e5d660be1733fa1736c582d *inst/doc/RcppEigen-Introduction.Rnw
-e0d27af58725870d944822a0aaed2764 *inst/doc/RcppEigen-Introduction.pdf
+498a2df5b20918eb95dd7e5a1aedc78a *inst/doc/RcppEigen-Introduction.pdf
 fe3de95dbdaf1d7070ff0d6f042703a2 *inst/doc/code.R
 c5365177ddfdf3cffdf061a6bce40d34 *inst/doc/unitTests/RcppEigen-unitTests.R
 d41d8cd98f00b204e9800998ecf8427e *inst/doc/unitTests/RcppEigen-unitTests.Rnw
@@ -377,9 +378,9 @@ f5e4c3a556790a654dcf3248a3adcbe5 *inst/tests/test-solutions.R
 bd1debad8d5f9da961e4f4307956a558 *inst/unitTests/runit.RcppEigen.R
 5c11e25708067b087158f6168e152e6c *inst/unitTests/runit.fastLm.R
 cfcf1658ce8db712808d13a5d485bc3e *inst/unitTests/runit.sparse.R
-f660a7cfb91ab3eb039e8a5960e6c9b6 *man/RcppEigen-package.Rd
+c906affdffdc9a5a87d4abdcbf613fa7 *man/RcppEigen-package.Rd
 327af9fbb4d18dfe18c708ccd272b6f7 *man/RcppEigen.package.skeleton.Rd
-d347b30855863aafd06fb66d550bc5ab *man/fastLm.Rd
+78165b43c9fd66cdd6700c90d4142217 *man/fastLm.Rd
 b3f1cebf93f1bf7e3458f46a15b8bc2c *src/Makevars
 ae306d19240f27d99b9e4a8d97a55de5 *src/Makevars.win
 14ce4f0c2b5791541d35eab24a7e6a04 *src/RcppEigen.cpp
@@ -392,5 +393,3 @@ ada0ab6fe3730587fe547165e595fbcd *vignettes/Rcpp.bib
 ea21cfea3bf944046e8e6a99e206a9a2 *vignettes/RcppEigen-intro-nojss.log
 e55bcb106f8d5b220105dbe6cc34a51c *vignettes/RcppEigen-intro-nojss.out
 d7146ba6bbc7a689c8a8f728823287f3 *vignettes/RcppEigen-intro-nojss.pdf
-0a5a06b5ae3c0ff94527a15e80fd7102 *vignettes/jss.bst
-b9564ddd59a06782310989e8f33db55e *vignettes/jsslogo.jpg
