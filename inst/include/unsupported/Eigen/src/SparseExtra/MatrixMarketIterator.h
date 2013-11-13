@@ -178,15 +178,28 @@ class MatrixMarketIterator
         std::string curfile;
         curfile = m_folder + "/" + m_curs_id->d_name;
         // Discard if it is a folder
+#ifndef __sun
         if (m_curs_id->d_type == DT_DIR) continue; //FIXME This may not be available on non BSD systems
+#endif
 //         struct stat st_buf; 
 //         stat (curfile.c_str(), &st_buf);
 //         if (S_ISDIR(st_buf.st_mode)) continue;
         
         // Determine from the header if it is a matrix or a right hand side 
-        bool isvector,iscomplex;
+        bool isvector,iscomplex=false;
         if(!getMarketHeader(curfile,m_sym,iscomplex,isvector)) continue;
         if(isvector) continue;
+        if (!iscomplex)
+        {
+          if(internal::is_same<Scalar, std::complex<float> >::value || internal::is_same<Scalar, std::complex<double> >::value)
+            continue; 
+        }
+        if (iscomplex)
+        {
+          if(internal::is_same<Scalar, float>::value || internal::is_same<Scalar, double>::value)
+            continue; 
+        }
+        
         
         // Get the matrix name
         std::string filename = m_curs_id->d_name;
