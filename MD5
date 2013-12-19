@@ -1,5 +1,6 @@
-2fa5f727bce2cbc8eb9b974d070b016d *ChangeLog
-eeda31cd36d8f96a976714bd4c769669 *DESCRIPTION
+447c753346119e316fea5eb48348821c *ChangeLog
+7aef3fd9e0378821e2a65e38b4b44f2b *DESCRIPTION
+e42bf18a51bf55ebd814dbec277ee8a9 *LICENSE
 a675cd3ac985f707b598577d0b66908f *NAMESPACE
 616ce3bdfa1132f7d987ff4cb3a587b4 *NEWS
 5ac28fa90d2825d636b77d9e0f36f842 *R/RcppEigen.package.skeleton.R
@@ -9,12 +10,13 @@ f4ee1fef0dc06ba9f9c10fa27d9c3b57 *R/SHLIB.R
 9fae5556be6bdf2bc556809f1a7a25ee *R/inline.R
 c24fd11beb810e5091627f2a3189d97d *R/unit.test.R
 9a5c87c4bfa9db566885a6f7746b16f3 *README.md
-1e3e5dc42049b7afbd803f00a6d88ed4 *build/vignette.rds
+1c237661b5b92f4ebfc23e9ff7368f8e *build/vignette.rds
 122124e5c83aa22c1a1edd530dfe89d5 *cleanup
 1e27f3b524c112856dd481a2168ee12e *inst/CITATION
+8b394fa87a687b21a763754e0891b7af *inst/COPYRIGHTS
 be6e7b61cfe053492c3fd78dbb427f3b *inst/doc/RcppEigen-Introduction.R
 9631b0e706a2d7f43d7833bcfc6b2184 *inst/doc/RcppEigen-Introduction.Rnw
-6d85088dea7586fc7c7110248b679af0 *inst/doc/RcppEigen-Introduction.pdf
+f06b61226301b3dd164ff69e15a411e6 *inst/doc/RcppEigen-Introduction.pdf
 fe3de95dbdaf1d7070ff0d6f042703a2 *inst/doc/code.R
 c5365177ddfdf3cffdf061a6bce40d34 *inst/doc/unitTests/RcppEigen-unitTests.R
 d41d8cd98f00b204e9800998ecf8427e *inst/doc/unitTests/RcppEigen-unitTests.Rnw
