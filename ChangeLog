@@ -1,7 +1,27 @@
+2014-01-26  Dirk Eddelbuettel  <edd@debian.org>
+
+	* DESCRIPTION: New minor version 3.2.0.2
+
+2014-01-22  Dirk Eddelbuettel  <edd@debian.org>
+
+	* NAMESPACE: Added importFrom(Rcpp, evalCpp) needed for next Rcpp
+
+2014-01-12  Dirk Eddelbuettel  <edd@debian.org>
+
+	* R/SHLIB.maker: Commented-out, file to be removed
+
+2013-12-19  Dirk Eddelbuettel  <edd@debian.org>
+
+	* DESCRIPTION: Updated Description to mention MPL-2 license for Eigen
+
+        * inst/unitTests/runit.solutions.R: RUnit file converted from testthat
+	* inst/unitTests/runit.transform.R: Idem
+	* inst/unitTests/runit.wrap.R: Idem
+	* DESCRIPTION: Remove Suggests: of testthat
+
 2013-12-18  Dirk Eddelbuettel  <edd@debian.org>
 
-
-	* DESCRIPTION: Minor version 3.2.0.1
+	* DESCRIPTION: New minor version 3.2.0.1
 	* DESCRIPTION: New maintainer
 	* DESCRIPTION: Added Copyright: reference to new COPYRIGHTS file
 	* DESCRIPTION: Added reference to new LICENSE file
