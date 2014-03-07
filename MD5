@@ -1,5 +1,5 @@
-e7803f770d8ab195e8ec6850aca819d3 *ChangeLog
-ef356022dddbb44af3b40cf6b8bc1788 *DESCRIPTION
+17d3b130c0500d8060e15e3cb9924409 *ChangeLog
+640ac07b013d6f65da851ba3505fb889 *DESCRIPTION
 e42bf18a51bf55ebd814dbec277ee8a9 *LICENSE
 eb900f45b4c146c04bf2f2bc60d7a338 *NAMESPACE
 c3aafdf7c0cc5aeea5aa84db9fc6952f *R/RcppEigen.package.skeleton.R
@@ -13,10 +13,10 @@ aed6b45fc11626419a6c8bdf2fa3d11f *README.md
 122124e5c83aa22c1a1edd530dfe89d5 *cleanup
 1e27f3b524c112856dd481a2168ee12e *inst/CITATION
 8b394fa87a687b21a763754e0891b7af *inst/COPYRIGHTS
-0019a2fdde74c75d0724c4076c2f99ac *inst/NEWS.Rd
+5b5fa35fad61cfc874aaea8b41182579 *inst/NEWS.Rd
 be6e7b61cfe053492c3fd78dbb427f3b *inst/doc/RcppEigen-Introduction.R
 9631b0e706a2d7f43d7833bcfc6b2184 *inst/doc/RcppEigen-Introduction.Rnw
-3f937f375dbf939e54be917085c0e3c2 *inst/doc/RcppEigen-Introduction.pdf
+37b6f74e808de00b90d18300410c364e *inst/doc/RcppEigen-Introduction.pdf
 fe3de95dbdaf1d7070ff0d6f042703a2 *inst/doc/code.R
 c5365177ddfdf3cffdf061a6bce40d34 *inst/doc/unitTests/RcppEigen-unitTests.R
 d41d8cd98f00b204e9800998ecf8427e *inst/doc/unitTests/RcppEigen-unitTests.Rnw
@@ -414,7 +414,7 @@ ea8f6ba4c64ab6a4448899e13f772aff *inst/include/unsupported/Eigen/src/Skyline/Sky
 442ac0f752eb3cc76178316070d1f627 *inst/include/unsupported/Eigen/src/SparseExtra/BlockOfDynamicSparseMatrix.h
 dd518d42c1d0aa1c78986c2db1b66b20 *inst/include/unsupported/Eigen/src/SparseExtra/DynamicSparseMatrix.h
 fdefb2956424b848c54b8389fc5aa095 *inst/include/unsupported/Eigen/src/SparseExtra/MarketIO.h
-330d4a59cfef9024b3b2208ce7489eab *inst/include/unsupported/Eigen/src/SparseExtra/MatrixMarketIterator.h
+2751d421d5d682249f9ea5e0f682fdec *inst/include/unsupported/Eigen/src/SparseExtra/MatrixMarketIterator.h
 2691610331ad5cec3359251ac42aee0a *inst/include/unsupported/Eigen/src/SparseExtra/RandomSetter.h
 3dca52522e899c1c07f7f42e41ad3b50 *inst/include/unsupported/Eigen/src/Splines/Spline.h
 8f1ea847412bed0ca3af5cd322326da5 *inst/include/unsupported/Eigen/src/Splines/SplineFitting.h
