@@ -1,5 +1,5 @@
-17d3b130c0500d8060e15e3cb9924409 *ChangeLog
-640ac07b013d6f65da851ba3505fb889 *DESCRIPTION
+b07ec7f818c0550fe16bcba97627f806 *ChangeLog
+88f21f7515b12e97e874b5832d8a7f6e *DESCRIPTION
 e42bf18a51bf55ebd814dbec277ee8a9 *LICENSE
 eb900f45b4c146c04bf2f2bc60d7a338 *NAMESPACE
 c3aafdf7c0cc5aeea5aa84db9fc6952f *R/RcppEigen.package.skeleton.R
@@ -9,14 +9,14 @@ c7aef4bfa80277e3de4994e273195d67 *R/SHLIB.R
 9fae5556be6bdf2bc556809f1a7a25ee *R/inline.R
 c24fd11beb810e5091627f2a3189d97d *R/unit.test.R
 aed6b45fc11626419a6c8bdf2fa3d11f *README.md
-1c237661b5b92f4ebfc23e9ff7368f8e *build/vignette.rds
+1e3e5dc42049b7afbd803f00a6d88ed4 *build/vignette.rds
 122124e5c83aa22c1a1edd530dfe89d5 *cleanup
 1e27f3b524c112856dd481a2168ee12e *inst/CITATION
 8b394fa87a687b21a763754e0891b7af *inst/COPYRIGHTS
-5b5fa35fad61cfc874aaea8b41182579 *inst/NEWS.Rd
+8858cf5b466b22f3b68a5d8efdaee0e3 *inst/NEWS.Rd
 be6e7b61cfe053492c3fd78dbb427f3b *inst/doc/RcppEigen-Introduction.R
 9631b0e706a2d7f43d7833bcfc6b2184 *inst/doc/RcppEigen-Introduction.Rnw
-37b6f74e808de00b90d18300410c364e *inst/doc/RcppEigen-Introduction.pdf
+517847c9e2f3a305a643869d3649858a *inst/doc/RcppEigen-Introduction.pdf
 fe3de95dbdaf1d7070ff0d6f042703a2 *inst/doc/code.R
 c5365177ddfdf3cffdf061a6bce40d34 *inst/doc/unitTests/RcppEigen-unitTests.R
 d41d8cd98f00b204e9800998ecf8427e *inst/doc/unitTests/RcppEigen-unitTests.Rnw
@@ -154,7 +154,7 @@ cff686d97576a6c53728b2a28e92ab55 *inst/include/Eigen/src/Core/products/Triangula
 0bd88e3ac6b27a67d0a349bd65882d8b *inst/include/Eigen/src/Core/util/ForwardDeclarations.h
 7e11f8d538ce6cd16a6a7a6c745fc2eb *inst/include/Eigen/src/Core/util/MKL_support.h
 a6ac93ede066aaa393459e39bb322c32 *inst/include/Eigen/src/Core/util/Macros.h
-c60bd14f3cbea3ea6319afaa746ef1d3 *inst/include/Eigen/src/Core/util/Memory.h
+c9a880ccd749115c2ebe17448a98bac2 *inst/include/Eigen/src/Core/util/Memory.h
 33377a1d97d26808f068c382dfbfa34a *inst/include/Eigen/src/Core/util/Meta.h
 c4ca2e16c302c71df98732240109e7e0 *inst/include/Eigen/src/Core/util/NonMPL2.h
 e0abd50c752bd47acdcebe62b325fcab *inst/include/Eigen/src/Core/util/ReenableStupidWarnings.h
