@@ -1,3 +1,27 @@
+2015-09-23  Dirk Eddelbuettel  <edd@debian.org>
+
+	* DESCRIPTION: Release 0.3.2.5.1
+
+        * debian/*: Changes for Debian release of 0.3.2.5.1
+
+2015-09-21  Dirk Eddelbuettel  <edd@debian.org>
+
+	* inst/include/Eigen/src/SparseCore/CompressedStorage.h: Added
+	somewhat adapted code from upstream PR #118 to address UBSAN
+
+2015-08-21  Dirk Eddelbuettel  <edd@debian.org>
+
+	* src/RcppEigen.cpp: Updated code to use Rcpp Attributes
+	* src/fastLm.cpp: Ditto
+	* src/fastLm.h: Ditto
+	* R/fastLm.R: Ditto
+	* inst/unitTests/runit.fastLm.R: Ditto
+
+2015-08-04  Dirk Eddelbuettel  <edd@debian.org>
+
+	* R/RcppEigen.package.skeleton.R: Correct kitten() use based on patch
+	kindly supplied by Grant Brown	(cf GitHub issue #21)
+
 2015-07-13  Dirk Eddelbuettel  <edd@debian.org>
 
 	* DESCRIPTION: Version 0.3.2.5.0
