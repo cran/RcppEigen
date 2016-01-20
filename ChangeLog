@@ -1,8 +1,30 @@
+2016-01-20  Dirk Eddelbuettel  <edd@debian.org>
+
+	* DESCRIPTION: Release 0.3.2.7.0
+
+	* debian/*: Changes for Debian release of 0.3.2.7.0
+
+2016-01-19  Dirk Eddelbuettel  <edd@debian.org>
+
+	* inst/unitTests/runit.sparse.R (test.sparseCholesky.R): Accomodate
+	stricter as.vector() requirements in R-devel
+
+2016-01-18  Yixuan Qiu  <yixuan.qiu@cos.name>
+
+	* inst/include/Eigen: Updated to release 3.2.7 of Eigen
+	* inst/include/unsupported: Idem
+	* DESCRIPTION: Idem
+	* README.md: Idem
+
+2015-11-01  Alexey Stukalov <alyst@users.noreply.github.com>
+
+	* src/fastLm.cpp: Do not include R's LAPACK header if MKL defined
+
 2015-09-23  Dirk Eddelbuettel  <edd@debian.org>
 
 	* DESCRIPTION: Release 0.3.2.5.1
 
-        * debian/*: Changes for Debian release of 0.3.2.5.1
+	* debian/*: Changes for Debian release of 0.3.2.5.1
 
 2015-09-21  Dirk Eddelbuettel  <edd@debian.org>
 
@@ -28,8 +50,8 @@
 
 2015-07-13  Yixuan Qiu  <yixuan.qiu@cos.name>
 
-	* inst/include/Eigen/src/Core/Assign.h: Applied patch from upstream Eigen
-	that will appear in the next release
+	* inst/include/Eigen/src/Core/Assign.h: Applied patch from upstream
+	Eigen that will appear in the next release
 
 2015-07-12  Dirk Eddelbuettel  <edd@debian.org>
 
