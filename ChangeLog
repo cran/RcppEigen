@@ -1,3 +1,95 @@
+2022-04-05  Dirk Eddelbuettel  <edd@debian.org>
+
+	* DESCRIPTION (Version, Date): CRAN Release 0.3.3.9.2
+	* inst/NEWS.Rd: Release 0.3.3.9.2
+
+2022-04-04  Dirk Eddelbuettel  <edd@debian.org>
+
+	* src/fastLm.cpp: Add FCONE in two calls for improved Fortran and C
+	character interface per Writing R Extensions, Section 6.6.1
+
+2022-01-16  Dirk Eddelbuettel  <edd@debian.org>
+
+	* inst/tinytest/test_wrap.R: Added (optional) large memory wrap tests
+ 	* inst/tinytest/cpp/wrap.cpp: Added C++ part of test
+
+	* .codecov.yml: Added to not trigger PR fail for small additions
+
+2022-01-16  Mikael Jagan  <jaganmn@mcmaster.ca>
+
+	* inst/include/RcppEigenWrap.h: Refine use plain dense wrap() change
+
+2022-01-15  Mikael Jagan  <jaganmn@mcmaster.ca>
+
+	* inst/include/RcppEigenWrap.h: Use R_xlen_t for vectors rows + cols
+
+2021-12-29  Dirk Eddelbuettel  <edd@debian.org>
+
+	* README.md: Add total downloads badge
+
+2021-12-08  Dirk Eddelbuettel  <edd@debian.org>
+
+	* README.md: Remove unused continuous integration artifact and badge
+
+2021-10-13  Dirk Eddelbuettel  <edd@debian.org>
+
+	* inst/CITATION: Refinment of doi use
+
+2021-10-10  Dirk Eddelbuettel  <edd@debian.org>
+
+	* inst/CITATION: Switch JSS url to doi form per JSS request
+	* README.md: Idem
+
+2021-07-19  Dirk Eddelbuettel  <edd@debian.org>
+
+	* inst/include/RcppEigenWrap.h: Two more #nocov tags
+	* src/fastLm.cpp: One more #nocov tag
+
+2021-07-18  Dirk Eddelbuettel  <edd@debian.org>
+
+	* inst/tinytest/test_fastLm.R: Add tests for summary
+	* src/fastLm.cpp: Add a few #nocov tags
+
+2021-07-17  Dirk Eddelbuettel  <edd@debian.org>
+
+	* DESCRIPTION (Date, Version): Roll minor version
+
+	* R/RcppEigen.package.skeleton.R (RcppEigen.package.skeleton): Also
+	import RcppEigen in DESCRIPTION
+
+2021-06-07  Dirk Eddelbuettel  <edd@debian.org>
+
+	* DESCRIPTION (Date, Version): Roll minor version
+
+	* inst/tinytest/test_misc.R: New test file
+	* inst/tinytest/test_fastLm.R: Added tests
+
+	* R/fastLm.R: Add single one-line nocov tag
+
+	* .Rbuildignore: Add .covignore and .codecov.yml
+
+2021-06-06  Dirk Eddelbuettel  <edd@debian.org>
+
+	* README.md: Added coverage badge
+
+	* .github/workflows/ci.yaml (jobs): Turn on coverage
+	* .covrignore: Added
+	* .codecov.yml (ignore): Idem
+
+	* R/RcppEigen.package.skeleton.R: Set nocov
+
+2021-05-09  Dirk Eddelbuettel  <edd@debian.org>
+
+	* DESCRIPTION (URL): Add GitHub repo to URL field
+
+2021-01-02  Dirk Eddelbuettel  <edd@debian.org>
+
+	* R/RcppEigen.package.skeleton.R: Wrap any() around grepl()
+
+2020-12-25  Dirk Eddelbuettel  <edd@debian.org>
+
+	* .github/workflows/ci.yaml: Small tweaks to CI YAML file
+
 2020-12-17  Dirk Eddelbuettel  <edd@debian.org>
 
 	* DESCRIPTION (Version, Date): CRAN Release 0.3.3.9.1 (following

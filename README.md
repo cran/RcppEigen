@@ -1,18 +1,19 @@
-## RcppEigen: Rcpp Integration for the Eigen Templated Linear Algebra Library
+## RcppEigen: R and Eigen via Rcpp
 
-[![Build Status](https://travis-ci.org/RcppCore/RcppEigen.svg)](https://travis-ci.org/RcppCore/RcppEigen)
 [![CI](https://github.com/RcppCore/RcppEigen/workflows/ci/badge.svg)](https://github.com/RcppCore/RcppEigen/actions?query=workflow%3Aci)
 [![License](https://img.shields.io/badge/license-GPL%20%28%3E=%202%29-brightgreen.svg?style=flat)](https://www.gnu.org/licenses/gpl-2.0.html)
 [![License](https://img.shields.io/badge/license-MPL2-brightgreen.svg?style=flat)](https://www.mozilla.org/MPL/2.0/)
 [![CRAN](https://www.r-pkg.org/badges/version/RcppEigen)](https://cran.r-project.org/package=RcppEigen)
 [![Dependencies](https://tinyverse.netlify.com/badge/RcppEigen)](https://cran.r-project.org/package=RcppEigen)
+[![Coverage Status](https://codecov.io/gh/RcppCore/RcppEigen/graph/badge.svg)](https://codecov.io/github/RcppCore/RcppEigen?branch=master)
 [![Debian package](https://img.shields.io/debian/v/r-cran-rcppeigen/sid?color=brightgreen)](https://packages.debian.org/sid/r-cran-rcppeigen)
-[![Last Commit](https://img.shields.io/github/last-commit/RcppCore/RcppEigen)](https://github.com/RcppCore/RcppEigen)  
-[![Downloads](https://cranlogs.r-pkg.org/badges/RcppEigen?color=brightgreen)](https://www.r-pkg.org:443/pkg/RcppEigen)
+[![Last Commit](https://img.shields.io/github/last-commit/RcppCore/RcppEigen)](https://github.com/RcppCore/RcppEigen)
+[![Downloads (monthly)](https://cranlogs.r-pkg.org/badges/RcppEigen?color=brightgreen)](https://www.r-pkg.org:443/pkg/RcppEigen)
+[![Downloads (total)](https://cranlogs.r-pkg.org/badges/grand-total/RcppEigen?color=brightgreen)](https://www.r-pkg.org:443/pkg/RcppEigen)
 [![CRAN use](https://jangorecki.gitlab.io/rdeps/RcppEigen/CRAN_usage.svg?sanitize=true)](https://cran.r-project.org/package=RcppEigen)
 [![BioConductor use](https://jangorecki.gitlab.io/rdeps/RcppEigen/BioC_usage.svg?sanitize=true)](https://cran.r-project.org/package=RcppEigen)
 [![StackOverflow](https://img.shields.io/badge/stackoverflow-rcpp-orange.svg)](https://stackoverflow.com/questions/tagged/rcpp)
-[![JSS](https://img.shields.io/badge/JSS-10.18637%2Fjss.v052.i05-brightgreen)](https://dx.doi.org/10.18637/jss.v052.i05)
+[![JSS](https://img.shields.io/badge/JSS-10.18637%2Fjss.v052.i05-brightgreen)](https://doi.org/10.18637/jss.v052.i05)
 
 
 ### Synopsis
@@ -67,8 +68,7 @@ The package is mature and under active development, following the
 ### Documentation
 
 The package contains a pdf vignette which is a pre-print of the [paper by
-Bates and Eddelbuettel](https://www.jstatsoft.org/article/view/v052i05)
-in JSS (2013, v52i05).
+Bates and Eddelbuettel](https://doi.org/10.18637/jss.v052.i05) in JSS (2013, v52i05).
 
 ### Authors
 
