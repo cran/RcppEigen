@@ -1,3 +1,21 @@
+2022-11-04  Dirk Eddelbuettel  <edd@debian.org>
+
+	* src/init.c: Add 'void' for proper prototype pleasing clang-15
+
+	* R/fastLm.R (summary.fastLm,print.fastLm): Refer to correct and full
+	variable name df.residual in the returned object
+
+	* .github/workflows/ci.yaml (jobs): Update to actions/checkout@v3
+
+2022-09-15  Jonah Gabry  <jgabry@gmail.com>
+
+	* inst/skeleton/rcppeigen_hello_world.cpp: Correct typo
+
+2022-04-08  Dirk Eddelbuettel  <edd@debian.org>
+
+	* DESCRIPTION (Depends): Add a versioned dependency on R 3.6.0 or
+	later because of our use of FCONE to support USE_FC_LEN_T
+
 2022-04-05  Dirk Eddelbuettel  <edd@debian.org>
 
 	* DESCRIPTION (Version, Date): CRAN Release 0.3.3.9.2
