@@ -1,5 +1,5 @@
-fc9f797212798f3d58a78c5d14fe2701 *ChangeLog
-2e5f0d5cb56a9b23b56f8b358222836a *DESCRIPTION
+b64ba61b81260997203233595dd3ab4b *ChangeLog
+2bcfe3c0bb836cf1d5f54f4e2620b018 *DESCRIPTION
 e42bf18a51bf55ebd814dbec277ee8a9 *LICENSE
 742cc37f7265d5c5769876355e6dd8a8 *NAMESPACE
 309b1ccf1c3c1dbd6cef99df62730204 *R/RcppEigen.package.skeleton.R
@@ -8,15 +8,15 @@ c7aef4bfa80277e3de4994e273195d67 *R/SHLIB.R
 e1fac714cf161eb0e1ff6a2c8b7806d9 *R/fastLm.R
 5e9a26fc37e3d6e32effd1906837a58f *R/flags.R
 cdd004c471ea6b4571a36553715a1310 *R/inline.R
-2d97481a5230f795e6102af5eaa8873f *README.md
-caa25fd4c303fd80ef1a8ccf977fec9e *build/vignette.rds
+f3aac587d990551b32041ecd549adc58 *README.md
+80793f039326afcc89dc7b1997439886 *build/vignette.rds
 122124e5c83aa22c1a1edd530dfe89d5 *cleanup
 85ae8c4845d02f52b357eb46770fa686 *inst/CITATION
 8b394fa87a687b21a763754e0891b7af *inst/COPYRIGHTS
-1a924bfcfb137217d616fa93f34f9c63 *inst/NEWS.Rd
+00ffe85cf0b47e9936153ea7b19c2b40 *inst/NEWS.Rd
 be6e7b61cfe053492c3fd78dbb427f3b *inst/doc/RcppEigen-Introduction.R
 c52f521406b904dee163f3286ba491e8 *inst/doc/RcppEigen-Introduction.Rnw
-a42c6b19e469496606724c89e6c5bed7 *inst/doc/RcppEigen-Introduction.pdf
+947332e13f41ef3451ecc5cbf9ee3b89 *inst/doc/RcppEigen-Introduction.pdf
 a3f7e1e72bbe54ef5e0acaf6e0a90521 *inst/examples/lmBenchmark.R
 145af623d4b14c143f728edefb421c90 *inst/include/Eigen/Cholesky
 f07ba76748be1d30bf6b5f780346ddc9 *inst/include/Eigen/CholmodSupport
@@ -342,7 +342,7 @@ a18c9208acd9db9ecc9643eebe051c74 *inst/include/Eigen/src/StlSupport/StdVector.h
 c850487641ece48cb76f0ed6eb162b55 *inst/include/Eigen/src/misc/Image.h
 204aec7b6cbd46a40fecb67549751f32 *inst/include/Eigen/src/misc/Kernel.h
 62b9105c4ceb13dd8f7747adb6019a3a *inst/include/Eigen/src/misc/RealSvd2x2.h
-5c3a7f49587dc7962f1d6a3905ab75eb *inst/include/Eigen/src/misc/blas.h
+62b34544558e47616d613f96b05b2e5b *inst/include/Eigen/src/misc/blas.h
 6b21f68118e06a562cf64f3e385d5e0d *inst/include/Eigen/src/misc/lapack.h
 a048ab6772f93f28d18bfef8f98d0f7d *inst/include/Eigen/src/misc/lapacke.h
 78a253bca660904aae9b45474fbc88bb *inst/include/Eigen/src/misc/lapacke_mangling.h
