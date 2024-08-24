@@ -1,5 +1,5 @@
-b64ba61b81260997203233595dd3ab4b *ChangeLog
-2bcfe3c0bb836cf1d5f54f4e2620b018 *DESCRIPTION
+b21f1f37023e730c64fdb412e5452690 *ChangeLog
+94e025a8c899609318bbcbf1ccd0ac61 *DESCRIPTION
 e42bf18a51bf55ebd814dbec277ee8a9 *LICENSE
 742cc37f7265d5c5769876355e6dd8a8 *NAMESPACE
 309b1ccf1c3c1dbd6cef99df62730204 *R/RcppEigen.package.skeleton.R
@@ -13,10 +13,10 @@ f3aac587d990551b32041ecd549adc58 *README.md
 122124e5c83aa22c1a1edd530dfe89d5 *cleanup
 85ae8c4845d02f52b357eb46770fa686 *inst/CITATION
 8b394fa87a687b21a763754e0891b7af *inst/COPYRIGHTS
-00ffe85cf0b47e9936153ea7b19c2b40 *inst/NEWS.Rd
+538d260aec3afdb31a0e37c243984ee1 *inst/NEWS.Rd
 be6e7b61cfe053492c3fd78dbb427f3b *inst/doc/RcppEigen-Introduction.R
 c52f521406b904dee163f3286ba491e8 *inst/doc/RcppEigen-Introduction.Rnw
-947332e13f41ef3451ecc5cbf9ee3b89 *inst/doc/RcppEigen-Introduction.pdf
+0353763433d0540acc0ecdd5311c62c4 *inst/doc/RcppEigen-Introduction.pdf
 a3f7e1e72bbe54ef5e0acaf6e0a90521 *inst/examples/lmBenchmark.R
 145af623d4b14c143f728edefb421c90 *inst/include/Eigen/Cholesky
 f07ba76748be1d30bf6b5f780346ddc9 *inst/include/Eigen/CholmodSupport
